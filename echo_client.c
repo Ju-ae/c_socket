@@ -33,8 +33,7 @@ int main(int argc, char *argv[])
 	}
 
 	while(1){
-		printf("me : ");
-		scanf("%s", buf);
+		gets(buf);
 		if(strcmp(buf, "exit") == 0)
 			break;
 		if(send(client_fd, buf, 0xff, 0) == -1){

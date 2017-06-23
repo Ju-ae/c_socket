@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
 	printf("Server : waiting connection request.\n");
 
 	while(1){
-		client_fd = accept(server_fd, (struct socketaddr *)&client_addr, (socklen_t *)&len);
-		if(client_fd < 0)
+		server_fd = accept(server_fd, (struct socketaddr *)&client_addr, (socklen_t *)&len);
+		if(server_fd <0)//client_fd < 0)
 		{
 			printf("Server : accept failed\n");
 			exit(0);
@@ -66,15 +66,15 @@ int main(int argc, char *argv[])
 		printf("Server : %s client connect. \n", temp);
 
 		while(1){
-			if((msg_size = recv(client_fd, (char *)buffer, BUF_SIZE, 0)) == 0){
-				close(client_fd);	
+			if((msg_size = recv(server_fd/*client*/, (char *)buffer, BUF_SIZE, 0)) == 0){
+				close(server_fd);	
 				printf("Server : %s client closed.\n", temp);
 				break;
 			}
 			printf("client %s : %s\n",temp, buffer);
-			send(client_fd, buffer, 0xff, 0);
+			send(server_fd, buffer, 0xff, 0);
 		}
-		close(server_fd);
+		//close(server_fd);
 		return 0;
 	}
 }
