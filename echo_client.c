@@ -8,7 +8,7 @@
 #include <sys/types.h>
 
 #define BUF_SIZE 1024
-#define PORT 1234
+#define PORT 123412
 #define IPADDR "127.0.0.1"
 
 int main(int argc, char *argv[])
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	}
 
 	while(1){
+		printf("send : ");
 		gets(buf);
 		if(strcmp(buf, "exit") == 0)
 			break;
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
 			break;
 		}
 		if(msg_size = recv(client_fd, (char *)recv_buf, BUF_SIZE, 0) == 0){
-			perror("recv : ");
+			perror("recv ");
 			break;
 		}
 		printf("echo : %s\n", recv_buf);
