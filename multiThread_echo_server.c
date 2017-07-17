@@ -103,7 +103,7 @@ void *recv_thread(void *arg)
 	{
 		if((recvn = recv(connect_fd, (char *)buffer, BUF_SIZE, 0)) <= 0)
 		{
-			printf("socket closed.\n");
+			printf("client %d connection closed.\n", connect_fd);
 			close(connect_fd);	
 			//		client[client_turn] = -1;
 			break;
